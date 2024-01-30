@@ -462,6 +462,9 @@ iperf_strerror(int int_errno)
             snprintf(errstr, len, "unable to set TCP/SCTP MSS");
             perr = 1;
             break;
+    case IESETMD5SIG:
+        snprintf(errstr, len, "unable to set TCP MD5_SIG option");
+        break;
 	default:
 	    snprintf(errstr, len, "int_errno=%d", int_errno);
 	    perr = 1;

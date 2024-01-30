@@ -791,6 +791,12 @@ iperf_set_test_mss(struct iperf_test *ipt, int mss)
     ipt->settings->mss = mss;
 }
 
+void
+iperf_set_test_md5sig(struct iperf_test *ipt, int enable)
+{
+    ipt->settings->md5_sig = enable;
+}
+
 /********************** Get/set test protocol structure ***********************/
 
 struct protocol *
@@ -1029,6 +1035,7 @@ iperf_parse_arguments(struct iperf_test *test, int argc, char **argv)
 #endif /* HAVE_SO_BINDTODEVICE */
         {"cport", required_argument, NULL, OPT_CLIENT_PORT},
         {"set-mss", required_argument, NULL, 'M'},
+        {"md5-sig", no_argument, NULL, OPT_MD5_SIG},
         {"no-delay", no_argument, NULL, 'N'},
         {"version4", no_argument, NULL, '4'},
         {"version6", no_argument, NULL, '6'},
@@ -1333,6 +1340,8 @@ iperf_parse_arguments(struct iperf_test *test, int argc, char **argv)
                     return -1;
                 }
 		client_flag = 1;
+            case OPT_MD5_SIG:
+                test->settings->md5_sig = 1;
                 break;
             case 'N':
                 test->no_delay = 1;

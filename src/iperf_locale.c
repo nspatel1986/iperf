@@ -181,6 +181,7 @@ const char usage_longstr[] = "Usage: iperf3 [-s|-c host] [options]\n"
 #endif /* HAVE_TCP_CONGESTION */
                            "  -M, --set-mss   #         set TCP/SCTP maximum segment size (MTU - 40 bytes)\n"
                            "  -N, --no-delay            set TCP/SCTP no delay, disabling Nagle's Algorithm\n"
+                           "  --md5-sig                 set TCP MD5 signature option\n"
                            "  -4, --version4            only use IPv4\n"
                            "  -6, --version6            only use IPv6\n"
                            "  -S, --tos N               set the IP type of service, 0-255.\n"

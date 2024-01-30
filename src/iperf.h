@@ -149,6 +149,7 @@ struct iperf_settings
     int	      pacing_timer;	    /* pacing timer in microseconds */
     int       burst;                /* packets per burst */
     int       mss;                  /* for TCP MSS */
+    int       md5_sig;              /* TCP MD5 SIG */
     int       ttl;                  /* IP TTL option */
     int       tos;                  /* type of service bit */
     int       flowlabel;            /* IPv6 flow label */

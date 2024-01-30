@@ -240,6 +240,17 @@ iperf_tcp_listen(struct iperf_test *test)
                 return -1;
             }
         }
+	// XXX: Check if kernel is compiled with CONFIG_TCP_MD5SIG
+        if ((opt = test->settings->md5_sig)) {
+            if (setsockopt(s, IPPROTO_TCP, TCP_MD5SIG, &opt, sizeof(opt)) < 0) {
+		saved_errno = errno;
+		close(s);
+		freeaddrinfo(res);
+		errno = saved_errno;
+                i_errno = IESETMD5SIG;
+                return -1;
+            }
+        }
 #if defined(HAVE_SO_MAX_PACING_RATE)
     /* If fq socket pacing is specified, enable it. */
     if (test->settings->fqrate) {

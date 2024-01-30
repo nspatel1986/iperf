@@ -70,6 +70,7 @@ typedef uint64_t iperf_size_t;
 #define OPT_CLIENT_PORT 5
 #define OPT_NUMSTREAMS 6
 #define OPT_FORCEFLUSH 7
+#define OPT_MD5_SIG 8
 #define OPT_NO_FQ_SOCKET_PACING 9 /* UNUSED */
 #define OPT_FQ_RATE 10
 #define OPT_DSCP 11
@@ -195,6 +196,7 @@ void    iperf_set_test_no_delay( struct iperf_test* ipt, int no_delay);
 void    iperf_set_dont_fragment( struct iperf_test* ipt, int dont_fragment );
 void    iperf_set_test_congestion_control(struct iperf_test* ipt, char* cc);
 void    iperf_set_test_mss(struct iperf_test* ipt, int mss);
+void    iperf_set_test_md5sig(struct iperf_test *ipt, int enable);
 
 #if defined(HAVE_SSL)
 void    iperf_set_test_client_username(struct iperf_test *ipt, const char *client_username);
@@ -440,6 +442,7 @@ enum {
     IEBINDDEVNOSUPPORT = 146,  // `ip%%dev` is not supported as system does not support bind to device
     IEHOSTDEV = 147,        // host device name (ip%%<dev>) is supported (and required) only for IPv6 link-local address
     IESETUSERTIMEOUT = 148, // Unable to set TCP USER_TIMEOUT (check perror)
+    IESETMD5SIG = 149,      // Unable to set TCP MD5_SIG option
     /* Stream errors */
     IECREATESTREAM = 200,   // Unable to create a new stream (check herror/perror)
     IEINITSTREAM = 201,     // Unable to initialize stream (check herror/perror)
